@@ -232,3 +232,90 @@ We can use *spread syntax* and *concat* to no mutate arrays and objects, respect
 
 `Object.assign`
 
+---
+
+### Rendering Elements
+
+Elements are the small building blocks of React apps. And they describe what you want to see on the screen. React only updates what hasn't been modified.
+
+### Hot module replacement (HMR)
+
+* Statements will stay in developer console
+* Can keep the application state after application reloads (e.g. Wizard or dialog with 3 screens can be remain opened because browser do not refresh page)
+
+### Complex JavaScript in JSX
+
+Map array method returns a new array.
+
+"By assigning a key attribute to each list element, React can identify modified items when the list
+changes.Make sure that the key attribute is a stable identifier."
+
+"A good rule of thumb is that elements inside the map() call need keys."
+
+
+### Components and props 
+
+source: <https://reactjs.org/docs/components-and-props.html>
+
+It's recommended naming props from the component’s own point of view rather than the context in which it is being used.
+
+"All React components must act like pure functions with respect to their props."
+
+### ES6 and arrow functions
+
+Block body:
+
+```
+{list.map(item => {
+	return (
+    <div key={item.objectID}>
+      <span>{item.author} is awarded {item.points} points</span>
+    </div>
+  );
+})}
+```
+
+Concise body:
+
+```
+{list.map(item => 
+  <div key={item.objectID}>
+    <span>{item.author} is awarded {item.points} points</span>
+  </div>
+)}
+```
+
+"Two factors influenced the introduction of arrow functions: shorter functions and no existence of `this` keyword."
+
+source: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions>
+
+"As stated previously, arrow function expressions are best suited for non-method functions."
+
+```
+'use strict';
+
+var obj = {
+  i: 10,
+  b: () => console.log(this.i, this),
+  c: function() {
+    console.log(this.i, this);
+  }
+}
+
+obj.b(); // prints undefined, Window {...} (or the global object)
+obj.c(); // prints 10, Object {...}
+```
+
+### ES6 Classes
+
+React mixes the good parts of both programming paradigms(Functional programming and object-oriented programming).
+
+"A class can also define functions. Because the function is associated with a class, it is called a method, or a class method."
+
+Classes need to be instatiated.
+
+When `extends` is used, that means that a class is inheriting some functionality from the other class. In React, when extending from Component, one functionality inherited is the `render()` method.
+
+
+### Javascript fundamentals before learning React
+
