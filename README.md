@@ -114,6 +114,12 @@ source: <https://www.robinwieruch.de/essential-react-libraries-framework/>
 
 * Functions: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions>
 
+There are function declarations and function expressions.
+
+Hoisting only works with function declaration and not with function expression.
+
+"A function defined in the global scope can access all variables defined in the global scope. A function defined inside another function can also access all variables defined in its parent function and any other variable to which the parent function has access."
+
 --- 
 
 
@@ -248,7 +254,7 @@ Elements are the small building blocks of React apps. And they describe what you
 Map array method returns a new array.
 
 "By assigning a key attribute to each list element, React can identify modified items when the list
-changes.Make sure that the key attribute is a stable identifier."
+changes. Make sure that the key attribute is a stable identifier."
 
 "A good rule of thumb is that elements inside the map() call need keys."
 
@@ -308,7 +314,7 @@ obj.c(); // prints 10, Object {...}
 
 ### ES6 Classes
 
-React mixes the good parts of both programming paradigms(Functional programming and object-oriented programming).
+React mixes the good parts of both programming paradigms (Functional programming and object-oriented programming).
 
 "A class can also define functions. Because the function is associated with a class, it is called a method, or a class method."
 
@@ -318,4 +324,85 @@ When `extends` is used, that means that a class is inheriting some functionality
 
 
 ### Javascript fundamentals before learning React
+
+Classes:
+
+The instance of the class is represented by the `this` object within it, but ouside it is just assigned to a JavaScript variable.
+
+The more specialized class inherites all the abilities from the more general class with the `extended` statement.
+
+"The React component is only a React component because it inherits all the abilities from the React Component class which is imported from the React package."
+
+App extends Component which grabs functionality as `this.setState()` from 'react' package.
+
+"The only class you should extend from your React components should be the official React Component, because React favors composition over inheritance."
+
+An example of Functional stateless react component:
+
+```
+const Gretting = (props) =>
+  <h1>{props.greeting}</h1>
+```
+
+To see in the future (TF): All the conditional renderings in React
+
+source: <https://www.robinwieruch.de/conditional-rendering-react/>
+
+TF: High-order functions and components(source: <https://www.robinwieruch.de/gentle-introduction-higher-order-components/>). Basically, high order function is a function that returns a function.
+
+Do not confuse rest (...) with destructuring ( { , } = )
+
+That’s especially beneficial for functional stateless components, because they always receive the `props` object in their function signature.
+
+```
+// no destructuring
+function Greeting(props) {
+  return <h1>{props.greeting}</h1>;
+}
+
+// destructuring
+function Greeting({ greeting }) {
+  return <h1>{greeting}</h1>;
+}
+```
+
+### ES6 Classes - MDN
+
+One difference between class declaration and function declaration is that the first is not hoisted.
+
+If there is a constructor present in the subclass, it needs to first call super() before using "this".
+
+The use of super() is to call the super class (the upper class or parent class) methods and parameters.
+
+---
+
+### Basics in React
+
+The ES6 class component uses a constructor to initialize local component state:
+
+```
+constructor(props) {
+	super(props);
+}
+```
+
+**It's mandatory to call super(props);** It makes possible to access `this.props` in the constructor. 
+
+O state é amarrado na class usando objeto this, assim é possível acessar o estado local (local state) do componente todo.
+
+No exemplo da lista, ao fazer o `this.state.list` a lista fica sendo parte do componente, no estado local dele. Assim, é possível adicionar, mudar ou remover itens da lista.
+
+Toda vez que o estado do componente mudar, o método `render()` do componente vai rodar de novo. É assim que é possível mudar o estado local do componente e ver componente re-renderizar os dados corretos do estado local.
+
+`this.props` contém os props que foram definidos por quem chamou o componente:
+
+`<App name={user}` resulta em `this.props.name = user` 
+
+Já o `state` contém dados específicos pelo container e podem mudar com o tempo. Ele é definido pelo usuário e deve ser um objeto Javascript simples.
+
+Nunca mude o `this.state` diretamente. Trate ele como se fosse imutável.
+
+### ES6 Object Initializer
+
+It's a more concise way to initialize objects when the property name in the object is the same as the variable name.
 
