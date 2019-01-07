@@ -507,3 +507,4 @@ function’s signature."
 "We store the input value to the local state every time the value in the input field changes."
 
 Uma função que retorna outra função é chamada de função de alta ordem (high-order function). Estas podem ser expressadas de forma mais concisa utilizando arrow functions.
+
