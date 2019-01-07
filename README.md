@@ -318,7 +318,7 @@ React mixes the good parts of both programming paradigms (Functional programming
 
 "A class can also define functions. Because the function is associated with a class, it is called a method, or a class method."
 
-Classes need to be instatiated.
+Classes need to be instantiated.
 
 When `extends` is used, that means that a class is inheriting some functionality from the other class. In React, when extending from Component, one functionality inherited is the `render()` method.
 
@@ -382,7 +382,7 @@ The ES6 class component uses a constructor to initialize local component state:
 
 ```
 constructor(props) {
-	super(props);
+  super(props);
 }
 ```
 
@@ -398,7 +398,7 @@ Toda vez que o estado do componente mudar, o método `render()` do componente va
 
 `<App name={user}` resulta em `this.props.name = user` 
 
-Já o `state` contém dados específicos pelo container e podem mudar com o tempo. Ele é definido pelo usuário e deve ser um objeto Javascript simples.
+Já o `state` contém dados específicos pelo component e podem mudar com o tempo. Ele é definido pelo usuário e deve ser um objeto Javascript simples.
 
 Nunca mude o `this.state` diretamente. Trate ele como se fosse imutável.
 
@@ -406,3 +406,104 @@ Nunca mude o `this.state` diretamente. Trate ele como se fosse imutável.
 
 It's a more concise way to initialize objects when the property name in the object is the same as the variable name.
 
+### Unidirectional Data Flow
+
+* Arrow functions tiram a necessidade de implementar 
+
+`this.clickFunction = this.clickFunction.bind(this)`
+
+pois elas já possuem o contexto do 'this' amarrado a elas. Dessa forma, fica assim:
+
+```
+const myFunction = () => {
+ return this.props.a + this.props.b;
+}
+
+
+//The previous stated myFunction is the same as...
+const myFunction = function() {
+  return this.props.a + this.props.b;
+}.bind(this);
+```
+
+Para definir um botão, o mesmo tem que ser codado em 3 lugares. Dentro do método `render()` utilizando a tag `<button>`, dentro do construtor, como `bind(this)` e fora do construtor como método da classe.
+
+Fluxo de dados unidirecional pode ser resumido como: uma ação é iniciada na view layer com `onClick`, uma função ou método de classe modifica o componente de estado local (local component state) e então o método `render()` do componente roda novamente e faz o update da view.
+
+### State and lifecycle in React
+
+`this.state` serve para armazenar o estado inicial do Componente, enquanto que `this.setState` altera esse estado.
+
+Primeiro, quando o componente é passado pra ReactDOM.render(), o construtor é chamado. Depois o método `render()`, depois o `componentDidMount()`.
+
+Lembrar de usar setState() para modificar estado. Nunca modificar a variável diretamente.
+
+O único lugar que se pode setar `this.state` é no construtor.
+
+`this.props` e `this.state` podem ser atualizados de forma assíncrona e assim, não se deve depender deles pra gerar o próximo estado.
+
+Exemplos:
+
+```
+// Wrong
+this.setState({
+  counter: this.state.counter + this.props.increment,
+});
+```
+
+Para arrumar, usar uma segunda forma do setState() que aceita uma função em vez de um objeto. A função receberá o estado prévio como primeiro argumento e o props na hora que o update for aplicado como segundo argumento.
+
+```
+// Correct
+this.setState((state, props) => ({
+  counter: state.counter + props.increment
+}));
+```
+
+Funções Arrow e regulares podem ser usadas.
+
+As atualizações são mescladas (merged) da forma que um objeto não interfere no outro (o deixa intacto).
+
+Os dados fluem pra baixo.
+
+### Bindings
+
+Se você quiser acessar `this.state` nos métodos de class, você tem que amarrar (bind) os métodos de classe no `this`.
+
+Os métodos de classe não devem ser definidos dentro do constructor.
+
+Usando ES6 Arrow Functions, os métodos de classe podem ser auto-vinculáveis (auto-bound):
+
+```
+class ExplainBindingsComponent extends Component {
+  onClickMe = () => {
+    console.log(this);
+  }
+
+  render() {
+    return (
+      <button
+        onClick={this.onClickMe}
+        type="button"
+      >
+        Click Me
+      </button>
+    );
+  }
+}
+```
+
+### Event Handler
+
+Deve ser passada uma função para o Event Handler.
+
+É preciso 'wrappear/amarrar' a propriedade ao ser passada ao método de classe. (High-order functions).
+
+### Interactions with Forms and Events
+
+"When using a handler in your element, you get access to the synthetic React event in your callback
+function’s signature."
+
+"We store the input value to the local state every time the value in the input field changes."
+
+Uma função que retorna outra função é chamada de função de alta ordem (high-order function). Estas podem ser expressadas de forma mais concisa utilizando arrow functions.
