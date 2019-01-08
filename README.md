@@ -508,3 +508,64 @@ function’s signature."
 
 Uma função que retorna outra função é chamada de função de alta ordem (high-order function). Estas podem ser expressadas de forma mais concisa utilizando arrow functions.
 
+Não há necessidade de passar a lista para o setState porque os merges em React são rasos, o que significa que ele mantém seus irmãos intactos (do this.state) quando executando o método this.setState para algum parâmetro individual.
+
+### Forms - React Docs
+
+When the value is read-only, it is an uncontrolled component in React.
+
+TF: Estudar *computed property name* syntax. Eg:
+
+```
+// ES5
+var partialState = {};
+partialState[name] = value;
+this.setState(partialState);
+```
+
+```
+// ES6
+this.setState({
+  [name]: value
+});
+```
+
+Use Formik to have a complete solution regard forms.
+
+### Split Up Components
+
+Props nada mais são que as propriedades da classe acima, que é extendida. Ex:
+
+"Props, short for properties, have all the values passed to the components when we
+used App component. That way, components can pass properties down the component tree."
+
+### Composable Components
+
+Foi usado o texto "Search" após o elemento <Search> para ilustrar como faz para um texto ficar visível para os children components. 
+
+Isso ocorreu porque o texto "Search" estava dentro do elemento <Search> e por isso pode ser usado como children dele pelo valor this.props.children.
+
+### Composition vs Inheritance - React Docs
+
+É recomendável utilizar composição em vez de herança.
+
+TF: Estudar melhor essa parte, principalmente a que uma variável é passada para as classes inferiores utilizando props.
+
+Lembre-se que os componentes podem aceitar props arbitrárias, incluindo valores primitivos, elementos de React ou funções.
+
+Se você quiser reusar funcionalidade que não seja de UI entre componentes, é sugerível extrair ela em um módulo separado de JavaScript. Os componentes podem então importar e utilizar essa função, objeto ou classe, sem precisar extendê-lo.
+
+### Reusable Components
+
+Facilita a criação de hierarquia entre os componentes, a fundação da camada view de React.
+
+O componente <Button> espera que seja declarada uma propriedade className nos props.
+
+### How to pass props to components in React - Robin blog
+
+TF: React props destructuring.
+
+Props são passadas apenas de cima pra baixo. Não tem como uma prop ser passada pro elemento pai.
+
+Props são apenas de leitura, não há como em React setar props. Props são usadas para trafegar dados de um componente para outro em React, mas só de componentes pai para filhos.
+
