@@ -569,3 +569,74 @@ Props são passadas apenas de cima pra baixo. Não tem como uma prop ser passada
 
 Props são apenas de leitura, não há como em React setar props. Props são usadas para trafegar dados de um componente para outro em React, mas só de componentes pai para filhos.
 
+`state` pode ser lido e escrito, enquanto `props` são apenas lidas.
+
+state pode ser passado como props para os children components também.
+
+Toda vez que o props ou state muda, o mecanismo de renderização do componente é acionado.
+
+TF: Finalizar esse artigo, parei em "How to pass Props from child to parent Component?". source: <https://www.robinwieruch.de/react-pass-props-to-component/>
+
+### Component Declarations
+
+Lifecycle methods ou métodos de ciclo de vida aprendidos até agora: `constructor()` e `render()`
+
+Functional stateless components (FSC): recebem props e retornam uma instância de componente em JSX. Não tem state, portanto, não podendo atualizar ou acessar o estado com `this.state` ou `this.setState()` (pois não tem o objeto *this*). Não possuem método de ciclo de vida com exceção do `render()` que é aplicado implicitamente em FSC.
+
+O método constructor() roda apenas uma vez durante a vida do componente enquanto o render() roda uma vez no início e toda vez que o componente se atualiza.
+
+React.createClass is deprecated as 15.5.
+
+```
+function Search(props) {
+  const { value, onChange, children } = props;
+  return (
+    <form>
+      {children} <input
+        type="text"
+        value={value}
+        onChange={onChange}
+      />
+    </form>
+  );
+}
+```
+
+é o equivalente a:
+
+```
+function Search({ value, onChange, children }) {
+  return (
+    <form>
+      {children} <input
+        type="text"
+        value={value}
+        onChange={onChange}
+      />
+    </form>
+  );
+}
+```
+
+que por sua vez equivale a:
+
+```
+const Search = ({ value, onChange, children }) =>
+  <form>
+    {children} <input 
+      type="text"
+      value={value}
+      onChange={onChange}
+    />
+  </form>
+```
+
+### Styling Components
+
+Pode-se passar objetos JavaScript para atributos de estilo de um elemento. Isso é chamado de *inline style*
+
+Outras alternativas: styled-components, CSS Modules e Sass.
+
+---
+
+### Getting real with APIs
