@@ -639,4 +639,45 @@ Outras alternativas: styled-components, CSS Modules e Sass.
 
 ---
 
-### Getting real with APIs
+## Getting real with APIs
+
+### Lifecycle methods
+
+* constructor(props)
+
+Chamado na inicialização. Pode-se chamar o state inicial do componente e fazer as vinculações (bind) com os métodos de classe.
+ 
+* staticgetDerivedStateFromProps(props, state)
+
+Chamado antes do `render()`, na montagem inicial e em updates subsequentes. Retorna um objeto para fazer o update do state ou null se não fizer nenhum update. Existe pra casos raros (quando o state depender das mudanças em props ao decorrer do tempo). É um método estático e não tem acesso à instância do componente.
+
+* render()
+
+É mandatório e retorna elementos como saído do componente. Deve ser puro, no sentido de não modificar o state do componente. Recebe props e state como entrada e retorna um elemento.
+
+* componentDidMount()
+
+É chamado uma única vez, quando o componente é montado. É a hora perfeita para fazer requisição assíncrona para buscar dados em uma API. Os dados buscados são armazenados no state local do component para serem mostrados no método `render()`.
+
+* shouldComponentUpdate(nexProps, nextState)
+
+É sempre chamado quando o componente se atualiza em decorrência de mudanças no state ou props. Deverá ser utilizado em aplicações maduras para otimização de performance. Dependendo de um `boolean` retornado por esse método, o componente e seus childrens renderizarão ou não em uma atualização de ciclo de vida. Pode-se prevenir a renderização de ciclo de vida de um componente.
+
+* getSnapshotBeforeUpdate(prevProps, prevState)
+
+é invocado antes que o mais recente output renderizado é commited pro DOM. Em casos raros, o componente precisa de capturar informação do DOM antes de ser potencialmente modificado. Esse método possibilita isso de ser feito. O método `componentDidUpdate()` receberá qualquer valor retornado pelo método `getSnapshotBeforeUpdate()` como parâmetro.
+
+* componentDidUpdate(prevProps, prevState, snapshot)
+
+É utilizado sempre que uma atualização ocorrer, com a exceção da inicial. Pode ser usado pararealizar operações no DOM ou mais requisições assíncronas. Se seu componente utilizar o método `getSnapshotBeforeUpdate()` o valor que ele retorna será recebido como parâmetro `śnapshot`.
+
+* componentWillUnmount()
+
+É chamado antes de destruir o componente. Pode ser usado para tarefas de limpeza.
+
+* componentDidCatch(error, info)
+
+Introduzido em React 16, faz o catch de erros nos components e mostra uma mensagem de erro para o usuário.
+
+### Lifecycle methods in React
+
