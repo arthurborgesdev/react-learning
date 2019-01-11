@@ -681,3 +681,17 @@ Introduzido em React 16, faz o catch de erros nos components e mostra uma mensag
 
 ### Lifecycle methods in React
 
+Lifecycle methods podem ser sobrescritos (override) a fim de rodar código em tempos definidos durante o processo. Usar como referência o [lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
+
+render() pode retornar Arrays and fragments. E também portals.
+
+Para interagir com o browser, utilizar "componentDidMount()" ou outros métodos de lifecycle. Manter "render()" puro. 
+
+render() não será invocado se shoulComponentUpdate() retornar false.
+
+"If you don’t initialize state and you don’t bind methods, you don’t need to implement a constructor for your React component."
+
+Não usar "this.setState()" no Constructor. Utlizar nos outros métodos somente.
+
+Não copiar props para dentro do state!
+
