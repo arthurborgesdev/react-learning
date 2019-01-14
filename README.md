@@ -657,7 +657,7 @@ Chamado antes do `render()`, na montagem inicial e em updates subsequentes. Reto
 
 * componentDidMount()
 
-É chamado uma única vez, quando o componente é montado. É a hora perfeita para fazer requisição assíncrona para buscar dados em uma API. Os dados buscados são armazenados no state local do component para serem mostrados no método `render()`.
+É chamado uma única vez, quando o componente é montado. É a hora perfeita para fazer requisição assíncrona para buscar dados em uma API. Os dados buscados são armazenados no state local do component para serem mostrados no método `render()`. -Também serve para setar um timerID -
 
 * shouldComponentUpdate(nexProps, nextState)
 
@@ -694,4 +694,34 @@ render() não será invocado se shoulComponentUpdate() retornar false.
 Não usar "this.setState()" no Constructor. Utlizar nos outros métodos somente.
 
 Não copiar props para dentro do state!
+
+`forceUpdate()` pula o `shouldComponentUpdate()` e chama só o `render()`.
+
+### State and Lifecycle
+
+`componentDidMount` serve para setar um timerID e `componentWillUnmount()` para limpar o timerID.
+
+Quando usar arrow functions, deve se omitir o `return`.
+
+"Neither parent nor child components can know if a certain component is stateful or stateless, and they shouldn’t care whether it is defined as a function or a class.
+
+This is why state is often called local or encapsulated. It is not accessible to any component other than the one that owns and sets it."
+
+### Error Handling in React 16
+
+Na maioria das vezes você vai setar um error boundary uma vez só e utilizar ela no aplicativo inteiro.
+
+O EB só pega erros nos componentes abaixo deles na árvore.
+
+Se um erro não for pego pelo EB, a árvore inteira de componentes é desmontada (unmounted).
+
+### Fetching Data
+
+source: <https://www.robinwieruch.de/react-fetching-data/>
+
+### ES6 Spread Operators
+
+source: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax>
+
+### Conditional Rendering
 
