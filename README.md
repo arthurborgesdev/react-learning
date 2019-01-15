@@ -587,6 +587,8 @@ O método constructor() roda apenas uma vez durante a vida do componente enquant
 
 React.createClass is deprecated as 15.5.
 
+*ES6 destructuring in the function signature to destructure the props:*
+
 ```
 function Search(props) {
   const { value, onChange, children } = props;
@@ -724,4 +726,49 @@ source: <https://www.robinwieruch.de/react-fetching-data/>
 source: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax>
 
 ### Conditional Rendering
+
+"In React a component has always to return an element or null."
+
+TF: Pesquisar e estudar mais sobre "switch case operator in React with PropTypes."
+
+Usar enums para substituir switchs em React.
+
+High Order Components são bem úteis para conditional rendering em React.
+
+Resumo de uso de casos:
+
+* if-else
+  * is the most basic conditional rendering
+  * beginner friendly
+  * use if to opt-out early from a render method by returning null
+* ternary operator
+  * use it over an if-else statement
+  * it is more concise than if-else
+* logical && operator
+  * use it when one side of the ternary operation would return null
+  * but be careful that you don’t run into bugs when using multiple conditions
+* switch case
+  * verbose
+  * can only be inlined with self invoking function
+  * avoid it, use enums instead
+* enums
+  * perfect to map different states
+  * perfect to map more than one condition
+* multi-level/nested conditional renderings
+  * avoid them for the sake of readability
+  * split up components into more lightweight components with their own simple conditional rendering
+  * use HOCs
+* HOCs
+  * use them to shield away conditional rendering
+  * components can focus on their main purpose
+* external templating components
+  * avoid them and be comfortable with JSX and JavaScript
+
+source: <https://www.robinwieruch.de/conditional-rendering-react/>
+
+Escolher o método condicional que seja mais adequado para você e sua equipe!
+
+source: <https://reactjs.org/docs/conditional-rendering.html>
+
+### Client- or Server-side Search
 
