@@ -770,5 +770,41 @@ Escolher o método condicional que seja mais adequado para você e sua equipe!
 
 source: <https://reactjs.org/docs/conditional-rendering.html>
 
+---
+
+Codecademy: Para acessar conteúdo de forms:
+
+```
+const login = (
+  <form action="#" onSubmit={this.authorize}>
+    <input type="password" placeholder="Password"/>
+    <input type="submit"/>
+  </form>
+);
+```
+
+```
+authorize(e) {
+  const password = e.target.querySelector('input type="password"]').value; 
+  const auth = password == this.state.password;
+  this.setState({
+    authorized: auth
+  });
+}
+```
+
+Referência: Authorization Form
+
+---
+
 ### Client- or Server-side Search
 
+Aprendi como fazer consultas de API utilizando a busca e um botão, que, quando clicado, submita um evento que chama uma função e faz uma call para a API. O resultado é renderizado com `this.setState()`.
+
+### Paginated Fetch
+
+Aprendi a fazer busca paginada em que vários resultados a mais aparecem no fim da página, ao se apertar o botão "More".
+
+### Client Cache
+
+Parei na página 103.
