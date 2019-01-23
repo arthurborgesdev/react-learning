@@ -805,6 +805,6 @@ Aprendi como fazer consultas de API utilizando a busca e um botão, que, quando 
 
 Aprendi a fazer busca paginada em que vários resultados a mais aparecem no fim da página, ao se apertar o botão "More".
 
-### Client Cache
+### Client Cache (página 101)
 
-Parei na página 103.
+TF: Observar esse capítulo quando quiser fazer uma só consulta à API, e as outras utilizando o cache local do cliente. (Performance)
